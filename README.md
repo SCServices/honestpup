@@ -248,6 +248,20 @@ text-gray-700  → Body text
 
 ## 🚦 Development Guidelines
 
+### Docs
+
+Project steering
+
+- product.md - Defines the product’s purpose, target users, key features, and business goals so the AI always understands the “why”.
+- tech.md - Lists the approved frameworks, libraries, tools, and technical constraints to keep every implementation on the chosen stack.
+- structure.md - Outlines folder layout, naming conventions, and architecture so generated code drops into the right place every time.
+
+Project specs
+
+- design.md - Captures high-level technical architecture, diagrams, and implementation considerations for each feature.
+- requirements.md - Records user stories and acceptance criteria in structured form to state exactly what the system must do.
+- tasks.md - Breaks the design into discrete, trackable coding steps that the agent marks off as work progresses.
+
 ### Code Style
 ```typescript
 // 1. Explicit types for everything
