@@ -1,14 +1,27 @@
 # HonestPup Master Plan
+*The Complete Project Brief and Source of Truth*
 
 ## Executive Summary
 
 HonestPup is a transparent, ethical puppy marketplace that connects verified breeders with families across the United States. Unlike traditional puppy marketplaces that hide fees, delay payments, and obscure breeder information, HonestPup operates on principles of honesty, fairness, and transparency.
+
+This document serves as the central source of truth for all development work. Before starting any coding task, developers and AI agents must read this masterplan to understand the complete business context, technical requirements, and implementation priorities.
 
 ### Core Value Propositions
 
 1. **For Buyers**: Transparent all-in pricing, verified ethical breeders, 7-10 day delivery with tracking, and flexible payment options
 2. **For Breeders**: Fast payments (20% on sale, remainder on delivery), zero listing fees, easy inventory management, and professional support
 3. **For the Industry**: Elimination of puppy mills, ethical breeding standards, and a trust-first marketplace
+
+### Project Documentation Structure
+
+This masterplan references and coordinates with these essential documents:
+- **Technical Architecture**: `honestpup-database-schema.md` - Complete database design and RLS policies
+- **User Experience**: `honestpup-app-flow.md` - Detailed user journeys and page specifications
+- **Visual Design**: `honestpup-design-guidelines.md` - Brand colors, components, and UI patterns
+- **Development Plan**: `honestpup-implementation-plan.md` - Sprint planning and development phases
+- **AI Development**: `honestpup-prompting-guide.md` - Templates and best practices for AI-assisted coding
+- **Formal Specifications**: `.kiro/specs/honestpup-platform/` - Requirements, design, and implementation tasks
 
 ## Business Model
 
@@ -114,23 +127,78 @@ HonestPup is a transparent, ethical puppy marketplace that connects verified bre
 
 ## Technical Architecture
 
-### Frontend
-- Mobile-first responsive web application
-- Built with modern JavaScript framework (React/Next.js recommended)
-- Component-based architecture for reusability
+### Technology Stack
+```yaml
+Frontend:
+  Framework: Next.js 14 (App Router)
+  Language: TypeScript
+  Styling: Tailwind CSS + shadcn/ui
+  State: React hooks + Zustand (if needed)
+  Forms: React Hook Form + Zod validation
 
-### Backend
-- Supabase for database, authentication, and real-time features
-- Stripe integration for payments and payouts
-- File storage for photos/videos
-- Email/SMS notification system
+Backend:
+  Database: Supabase PostgreSQL
+  Authentication: Supabase Auth
+  Storage: Supabase Storage
+  Real-time: Supabase Realtime
+  Functions: Supabase Edge Functions
+
+Payments:
+  Processing: Stripe Elements
+  Payouts: Stripe Connect
+  Financing: Affirm via Stripe
+
+Infrastructure:
+  Hosting: Vercel
+  CDN: Cloudflare
+  Monitoring: Sentry + Vercel Analytics
+  CI/CD: GitHub Actions
+```
+
+### Database Design Principles
+- **Row Level Security (RLS)**: All tables protected by user-specific policies
+- **Soft Deletes**: Use `deleted_at` timestamps instead of hard deletes
+- **Audit Trails**: Track all changes with `created_at` and `updated_at`
+- **UUID Primary Keys**: For security and distributed architecture
+- **Normalized Structure**: Minimize redundancy while maintaining performance
+
+### Security Architecture
+```typescript
+// Authentication Flow
+1. Supabase Auth handles login/signup
+2. JWT tokens with automatic refresh
+3. Role-based access (buyer, breeder, admin)
+4. Guest checkout without forced registration
+
+// Data Security
+1. RLS policies enforce data access rules
+2. Stripe handles all payment data (PCI compliant)
+3. File uploads validated and optimized
+4. API rate limiting and input validation
+```
 
 ### Key Integrations
-1. **Stripe**: Payment processing and Stripe Connect for payouts
-2. **Affirm via Stripe**: Payment plans
-3. **CitizenShipper**: Delivery coordination (external)
-4. **Email Service**: Transactional emails
-5. **SMS Service**: Text notifications
+1. **Stripe Ecosystem**:
+   - Payment processing with Elements
+   - Stripe Connect for marketplace payouts
+   - Affirm financing integration
+   - Webhook handling for payment events
+
+2. **Communication Services**:
+   - SendGrid for transactional emails
+   - Twilio for SMS notifications
+   - In-app messaging system
+
+3. **External Partners**:
+   - CitizenShipper for delivery coordination
+   - Image optimization and CDN services
+
+### Performance Requirements
+- **Page Load Speed**: < 3 seconds on 3G
+- **Mobile Performance**: Lighthouse score > 90
+- **Database Queries**: < 500ms average response
+- **Image Optimization**: WebP with fallbacks, lazy loading
+- **Uptime**: 99.9% availability target
 
 ## Security & Trust
 

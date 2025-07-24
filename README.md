@@ -68,23 +68,45 @@ Infrastructure:
 
 ## 📚 Documentation Structure
 
-> **AI Agents**: Always consult these documents in order of relevance to your task:
+> **AI Agents**: Always start with the masterplan, then consult specific documents based on your task:
 
-1. **[masterplan.md](./docs/masterplan.md)** - Business model, platform overview, success metrics
-2. **[app_flow.md](./docs/app_flow.md)** - Detailed user journeys, page flows, state management
-3. **[design_guidelines.md](./docs/design_guidelines.md)** - Colors, typography, components, patterns
-4. **[database_schema.md](./docs/database_schema.md)** - Tables, RLS policies, functions, triggers
-5. **[implementation_plan.md](./docs/implementation_plan.md)** - Sprint planning, roadmap, milestones
+### 🎯 Primary Documents (Read First)
+1. **[honestpup-masterplan.md](./honestpup-masterplan.md)** - **CENTRAL SOURCE OF TRUTH** - Complete business model, technical architecture, and project overview
+2. **[.kiro/specs/honestpup-platform/](./kiro/specs/honestpup-platform/)** - **MAIN PLATFORM SPEC** - Core requirements, design, and implementation tasks
 
-### Quick Reference for AI Agents
+### 🎯 Feature-Specific Specifications
+3. **[.kiro/specs/buyer-journey/](./kiro/specs/buyer-journey/)** - **BUYER EXPERIENCE** - Search, filtering, edge cases, and upsell strategies
+4. **[.kiro/specs/user-authentication/](./kiro/specs/user-authentication/)** - **AUTH SYSTEM** - Multi-role authentication and guest checkout
+5. **[.kiro/specs/payment-processing/](./kiro/specs/payment-processing/)** - **PAYMENTS** - Secure processing, financing, and marketplace payouts
+6. **[.kiro/specs/breeder-management/](./kiro/specs/breeder-management/)** - **BREEDER TOOLS** - Application, verification, and business management
+7. **[.kiro/specs/admin-dashboard/](./kiro/specs/admin-dashboard/)** - **ADMIN PLATFORM** - Complete administrative and moderation tools
+
+### 📋 Detailed Documentation (Reference as Needed)
+3. **[honestpup-app-flow.md](./honestpup-app-flow.md)** - Detailed user journeys, page flows, state management
+4. **[honestpup-design-guidelines.md](./honestpup-design-guidelines.md)** - Colors, typography, components, UI patterns
+5. **[honestpup-database-schema.md](./honestpup-database-schema.md)** - Complete database design, RLS policies, functions, triggers
+6. **[honestpup-implementation-plan.md](./honestpup-implementation-plan.md)** - Sprint planning, development phases, roadmap
+7. **[honestpup-prompting-guide.md](./honestpup-prompting-guide.md)** - AI development templates and best practices
+
+### 🚀 Quick Reference for AI Agents
 ```typescript
-// When building features, check these sections:
-DatabaseWork     → database_schema.md
-UIComponents     → design_guidelines.md  
-UserFlows        → app_flow.md
-BusinessLogic    → masterplan.md
-ProjectTimeline  → implementation_plan.md
+// ALWAYS READ FIRST: honestpup-masterplan.md
+// Then consult based on task type:
+
+BusinessLogic     → honestpup-masterplan.md
+Requirements      → .kiro/specs/honestpup-platform/requirements.md
+SystemDesign      → .kiro/specs/honestpup-platform/design.md
+TaskExecution     → .kiro/specs/honestpup-platform/tasks.md
+DatabaseWork      → honestpup-database-schema.md
+UIComponents      → honestpup-design-guidelines.md  
+UserFlows         → honestpup-app-flow.md
+ProjectTimeline   → honestpup-implementation-plan.md
+AIPrompting       → honestpup-prompting-guide.md
 ```
+
+### 📖 Legacy Documents (Historical Reference)
+- **[HonestPup-v1.md](./HonestPup-v1.md)** - Original landing page design and copy
+- **[honestpup-readme-kb.md](./honestpup-readme-kb.md)** - Previous knowledge base version
 
 ---
 
